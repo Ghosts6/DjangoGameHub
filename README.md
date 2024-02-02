@@ -7,7 +7,7 @@ This is my source code of web platform that hosting classic games like Snake, Fl
 
 
 
-🔍Code-sample(Snake Game Overview):
+# 🔍Code-sample(Snake Game Overview):
 
 
 In our Snake Game, navigate through the grid, avoiding collisions with the game borders or your own tail to stay in the game. Devouring fruits not only adds points to your score but also extends the length of your snake, presenting both a challenge and an opportunity.
