@@ -29,6 +29,7 @@ Key Features:
   4  Score Page:
         Explore the dedicated score page to witness the top scores achieved by players.
         Be inspired by the best and strive to reach the pinnacle of the leaderboards.
+  snake.html
   ```html
 {% load static %}
 <!DOCTYPE html>
@@ -78,6 +79,7 @@ Key Features:
 </body>
 </html>
 ```
+snake.css
 ```css
 body {
     margin: 0;
@@ -182,6 +184,7 @@ body {
     border: 3px double #007acc;
 }
 ```
+snake.js
 ```js
 function setRandomPosition(fruit) {
     const container = document.querySelector('.game-container');
@@ -503,6 +506,7 @@ function handleKeyPress(event) {
     document.addEventListener('keydown', handleKeyPress);
 });
 ```
+views.py
 ```python
 def Snake_Game(request, player_name):
     top_scores = SnakeScore.objects.order_by('-score')[:1]
