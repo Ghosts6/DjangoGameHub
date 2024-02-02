@@ -30,6 +30,7 @@ Key Features:
         Explore the dedicated score page to witness the top scores achieved by players.
         Be inspired by the best and strive to reach the pinnacle of the leaderboards.
   snake.html
+ 
   ```html
 {% load static %}
 <!DOCTYPE html>
