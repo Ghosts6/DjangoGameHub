@@ -29,8 +29,9 @@ Key Features:
   4  Score Page:
         Explore the dedicated score page to witness the top scores achieved by players.
         Be inspired by the best and strive to reach the pinnacle of the leaderboards.
-  snake.html
  
+ 
+  snake.html
   ```html
 {% load static %}
 <!DOCTYPE html>
