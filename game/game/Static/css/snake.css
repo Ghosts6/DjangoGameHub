@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    animation: movingColor 10s infinite;
+    background: linear-gradient(45deg, #a3d7ff, #ffb6d1, #c7b3ff);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+@keyframes movingColor {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    border: 10px dashed #003366; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    overflow: hidden;
+    z-index: 1;
+}
+
+.score-container {
+    position: absolute;
+    top: 20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    color: #000;
+    z-index: 2;
+}
+
+.player-score {
+    display: inline-block;
+    margin-right: 10px; 
+}
+
+.top-score-container {
+    position: absolute;
+    bottom: 20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    color: #000;
+    z-index: 2; 
+}
+.fruit {
+    font-size: 24px; 
+    cursor: pointer;
+    z-index: 3;
+}
+
+.banana {
+    color: yellow; 
+}
+
+.game-over-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px double #00bfff;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.buttons-container {
+    margin-top: 20px;
+}
+
+.buttons-container button {
+    background-color: #00bfff; 
+    color: #000; 
+    border-radius: 20px; 
+    padding: 10px 20px; 
+    margin: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.buttons-container button:hover {
+    background-color: #007acc; 
+    color: #fff; 
+    border: 3px double #007acc;
+}
+

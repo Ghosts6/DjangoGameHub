@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" onclick="jump()">
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="{% static 'css/flappy_bird.css'%}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="theme-color" content="#ffffff">   
+    <title>Flappy Bird</title>
+</head>
+<body>
+    <a href="https://kiarashbashokian.com" target="_blank">
+        <img src="{% static 'img/logo.png'%}" alt="Your Logo" class="logo">
+    </a>
+    <div class="return-icon" id="returnIcon">
+        <img src="{% static 'img/return.svg'%}" alt="svg" class="returnicon" title="Return to home page">
+    </div>
+    <div id="clock" class="clock">00:00:00</div>
+    <div id="particles-js"></div>
+    <h1>Flappy Bird </h1>
+    <div class="game">
+        <div id="block"></div>
+        <div id="hole"></div>
+        <div id="character"></div>  
+        <div id="score" id="score">0</div>   
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{% static 'js/flappy_bird.js'%}"></script>
+</body>
+</html>

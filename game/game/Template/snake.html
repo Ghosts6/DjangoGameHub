@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="theme-color" content="#ffffff">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="{% static 'css/snake.css' %}">
+</head>
+<body>
+    <div class="game-container">
+        <div class="score-container">
+            <p class="player-score">
+                <span id="playerName">Your Name</span>
+                <span id="score">0</span>
+            </p>
+        </div>
+        <div class="snake-container"></div>
+        <div class="fruit apple" data-points="5">🍎</div>
+        <div class="fruit apple" data-points="5">🍎</div>
+        <div class="fruit apple" data-points="5">🍎</div>
+        <div class="fruit apple" data-points="5">🍎</div>
+        <div class="fruit banana" data-points="10">🍌</div>
+        <div class="fruit banana" data-points="10">🍌</div>
+    </div>
+    <div class="top-score-container">
+        <p>Top Score:</p>
+        <form id="snakeScoreForm" method="post" action="{% url 'submit_snake_score' %}">
+        {% csrf_token %}
+    <ul>
+        {% for score in top_scores %}
+            <li>{{ score.player_name }} - {{ score.score }}</li>
+        {% empty %}
+            <li>No top score yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+    </div>
+    <script src="{%static 'js/snake.js' %}"></script>
+</body>
+</html>
+

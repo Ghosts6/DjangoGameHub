@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png'%}">
+    <link rel="stylesheet" href="{% static 'css/top_scores.css' %}">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="theme-color" content="#ffffff">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Scores</title>
+
+</head>
+<body>
+    <a href="https://kiarashbashokian.com" target="_blank">
+        <img src="{% static 'img/logo.png' %}" alt="Your Logo" class="logo">
+    </a>
+    <div class="return-icon" id="returnIcon">
+        <img src="{% static 'img/return.svg' %}" alt="svg" class="returnicon" title="Return to home page">
+    </div>
+    <div class="container">
+    <h1>Top Scores:</h1>
+    <div class="scoreboard" id="scoreboard1">
+    <h2>Snake game</h2>
+    {% for score in snake_top_scores %}
+        <p>{{ score.player_name }} - Score: {{ score.score }}</p>
+    {% endfor %}
+    <div class="logo-container">
+        <img src="{% static 'img/top_score/snakelogo.png' %}" alt="Snake Logo">
+    </div>
+</div>
+
+<div class="scoreboard" id="scoreboard2">
+    <h2>Flappy bird</h2>
+    {% for score in flappy_top_scores %}
+        <p>{{ score.player_name }} - Score: {{ score.score }}</p>
+    {% endfor %}
+    <div class="logo-container">
+        <img src="{% static 'img/top_score/flappylogo.png' %}" alt="Flappy Bird Logo">
+    </div>
+</div>
+
+<div class="scoreboard" id="scoreboard3">
+    <h2>Dinosaur game</h2>
+    {% for score in dinosaur_top_scores %}
+        <p>{{ score.player_name }} - Score: {{ score.score }}</p>
+    {% endfor %}
+    <div class="logo-container">
+        <img src="{% static 'img/top_score/dinologo.png' %}" alt="Dinosaur Game Logo">
+    </div>
+</div>
+
+
+    <div id="clock" class="clock">00:00:00</div>
+    <div id="particles-js"></div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{% static 'js/top_scores.js' %}"></script>
+</body>
+</html>

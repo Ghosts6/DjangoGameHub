@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="{% static 'css/tic_tac_toe.css'%}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="theme-color" content="#ffffff">
+    <title>Tic-Tac-Toe</title>
+</head>
+
+<body>
+    <div class="title-container">
+        <h1>Tic-Tac-Toe</h1>
+    </div>
+
+    <a href="https://kiarashbashokian.com" target="_blank">
+        <img src="{% static 'img/logo.png'%}" alt="Your Logo" class="logo">
+    </a>
+
+    <div class="return-icon" id="returnIcon">
+        <img src="{% static 'img/return.svg'%}" alt="svg" class="returnicon" title="Return to home page">
+    </div>
+
+    <div id="clock" class="clock">00:00:00</div>
+    <div id="particles-js"></div>
+   
+<div class="container">
+    <div class="game-board">
+        <div class="game-board-division-back"></div>
+        <div class="rows-main-cont">
+            <div class="row row1">
+                <div class="cell" data-row="0" data-col="0"></div>
+                <div class="cell" data-row="0" data-col="1"></div>
+                <div class="cell" data-row="0" data-col="2"></div>
+            </div>
+            <div class="row row2">
+                <div class="cell" data-row="1" data-col="0"></div>
+                <div class="cell" data-row="1" data-col="1"></div>
+                <div class="cell" data-row="1" data-col="2"></div>
+            </div>
+            <div class="row row3">
+                <div class="cell" data-row="2" data-col="0"></div>
+                <div class="cell" data-row="2" data-col="1"></div>
+                <div class="cell" data-row="2" data-col="2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{% static 'js/tic_tac_toe.js' %}"></script>
+</body>

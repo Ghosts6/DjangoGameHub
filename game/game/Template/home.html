@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">  
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="theme-color" content="#ffffff">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to my project</h1>
+        <p>Developer: <span id="name">Kiarash B</span></p>
+    </div>
+    <div id="particles-js"></div>
+<form id="gameForm" class="transparent-form" action="{% url 'home' %}" method="post" onsubmit="return false;">
+    {% csrf_token %}
+    <input type="text" id="playerName" name="player_name" placeholder="Enter your name" required />
+    <input type="hidden" id="selectedGame" name="selected_game" />
+    <button type="button" onclick="startGame('snake')">Snake Game</button>
+    <button type="button" onclick="startGame('tic_tac')">Tic Tac Toe</button>
+    <button type="button" onclick="startGame('flappy_bird')">Flappy Bird</button>
+    <button type="button" onclick="startGame('dinosaur')">Dinosaur Game</button>
+    <br> 
+    <a href="{% url 'top_scores' %}" class="top-scores-link">Top Scores</a>
+</form>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{% static 'js/home.js' %}"></script>
+</body>
+
+</html>
