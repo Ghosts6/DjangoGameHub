@@ -27,5 +27,5 @@ jobs:
        pip install -r requirements.txt
     - name: Run Tests
       run: |
-        cd myTicket_v2
+        cd game
         python manage.py test
