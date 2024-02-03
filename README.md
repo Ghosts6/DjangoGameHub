@@ -535,4 +535,8 @@ def handle_snake_score_submission(request):
     return HttpResponse('Invalid submission or GET request!')
 ```      
 #🖥️Technolgy:
+
+Backend:python,django,postgersql
+Frontend:html,css,js
+
 ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=plastic&logo=django&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E)  ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white)  ![Python](https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54) ![PostgreSQL](https://img.shields.io/badge/postgresql-336791?style=plastic&logo=postgresql&logoColor=white)
