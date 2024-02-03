@@ -7,8 +7,52 @@ This is my source code of web platform that hosting classic games like Snake, Fl
 [djangohub.webm](https://github.com/Ghosts6/DjangoGameHub/assets/95994481/b24b4082-31e8-46d8-a7c6-1805e034ef4d)
 
 
-# 🔍Code-sample(Snake Game Overview):
+# 🌲Directory Structure:
 
+Here we can take closer look to project structure:
+```bash
+game
+    ├── app
+    │   ├── migrations
+    │   │   └── __pycache__
+    │   └── __pycache__
+    ├── game
+    │   ├── __pycache__
+    │   ├── Static
+    │   │   ├── css
+    │   │   ├── favicon
+    │   │   ├── img
+    │   │   │   ├── dino
+    │   │   │   ├── flappy_bird
+    │   │   │   └── top_score
+    │   │   └── js
+    │   └── Template
+    └── staticfiles
+        ├── admin
+        │   ├── css
+        │   │   └── vendor
+        │   │       └── select2
+        │   ├── img
+        │   │   └── gis
+        │   └── js
+        │       ├── admin
+        │       └── vendor
+        │           ├── jquery
+        │           ├── select2
+        │           │   └── i18n
+        │           └── xregexp
+        ├── css
+        ├── favicon
+        ├── img
+        │   ├── dino
+        │   ├── flappy_bird
+        │   └── top_score
+        └── js
+
+```
+
+
+# 🔍Code-sample(Snake Game Overview):
 
 In our Snake Game, navigate through the grid, avoiding collisions with the game borders or your own tail to stay in the game. Devouring fruits not only adds points to your score but also extends the length of your snake, presenting both a challenge and an opportunity.
 
