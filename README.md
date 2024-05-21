@@ -1,7 +1,7 @@
 ![baner](https://github.com/Ghosts6/Local-website/blob/main/img/Baner.png)
 # 🌐DjangoGameHub :
 
-This is my source code of web platform that hosting classic games like Snake, Flappy Bird, Tic-Tac-Toe, and Chrome's Dinosaur Game. Powered by Django and PostgreSQL for seamless performance, with HTML, CSS, and JavaScript for a captivating frontend. Track your scores, compete on the leaderboard, and aim for the top spot. Join the gaming community, challenge yourself, and let the games begin!
+This is source code of my web platform that hosting classic games like Snake, Flappy Bird, Tic-Tac-Toe, and Chrome's Dinosaur Game. Powered by Django and PostgreSQL for seamless performance, with HTML, CSS, and JavaScript for a captivating frontend. Track your scores, compete on the leaderboard, and aim for the top spot. Join the gaming community, challenge yourself, and let the games begin!
 
 
 [djangohub.webm](https://github.com/Ghosts6/DjangoGameHub/assets/95994481/b24b4082-31e8-46d8-a7c6-1805e034ef4d)
