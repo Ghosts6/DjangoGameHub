@@ -167,6 +167,7 @@ CRITICAL RULES - FOLLOW STRICTLY:
 7. Ask about CATEGORIES and TRAITS, not individual names
 8. Only make a final guess when you're 90% confident based on unique traits
 9. If user gives uncertain answers ("probably", "don't know"), ask MORE questions before guessing
+10. When you are 90%+ confident and make a final guess, always append "[GUESS_SUCCESS]" to the end of your response.
 
 QUESTIONING STRATEGY (Follow this order):
 Phase 1 – Broad Classification (Questions 1–3)
@@ -304,8 +305,14 @@ Adapt your questioning based on answer certainty - more uncertain answers = more
             
             akinator_response = response.choices[0].message.content.strip()
             
-            # Check if it's a success message
-            if any(phrase in akinator_response.lower() for phrase in ["great job!", "i knew it!", "well done!", "congratulations!"]):
+            # Check if it's a successful guess by Akinator or if the user confirmed the guess
+            if user_answer == 'guess_yes' or \
+               "[GUESS_SUCCESS]" in akinator_response or \
+               "i correctly guessed your character as" in akinator_response.lower() or \
+               "your character was" in akinator_response.lower() or \
+               any(phrase in akinator_response.lower() for phrase in ["great job!", "i knew it!", "well done!", "congratulations!"]):
+                # Remove the [GUESS_SUCCESS] token from the response before sending to frontend
+                akinator_response = akinator_response.replace("[GUESS_SUCCESS]", "").strip()
                 return JsonResponse({
                     'question': akinator_response,
                     'success': True  # This flag indicates we should trigger the celebration

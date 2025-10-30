@@ -53,5 +53,104 @@ if (showLoginRegister) {
     });
 }
 
+// Client-side validation for login and registration forms
+
+function showErrorMessage(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+    }
+}
+
+function clearErrorMessage(elementId) {
+    const errorElement = document.getElementById(elementId);
+    if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.style.display = 'none';
+    }
+}
+
+function validateLoginForm() {
+    const usernameInput = document.getElementById('id_username'); 
+    const passwordInput = document.getElementById('id_password');
+    let isValid = true;
+
+    clearErrorMessage('login-username-error');
+    clearErrorMessage('login-password-error');
+
+    if (usernameInput.value.trim() === '') {
+        showErrorMessage('login-username-error', 'Username is required.');
+        isValid = false;
+    }
+
+    if (passwordInput.value.trim() === '') {
+        showErrorMessage('login-password-error', 'Password is required.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function validateRegisterForm() {
+    const usernameInput = document.getElementById('id_username'); 
+    const emailInput = document.getElementById('id_email');      
+    const passwordInput = document.getElementById('id_password1'); 
+    const confirmPasswordInput = document.getElementById('id_password2'); 
+    let isValid = true;
+
+    clearErrorMessage('register-username-error');
+    clearErrorMessage('register-email-error');
+    clearErrorMessage('register-password-error');
+    clearErrorMessage('register-confirm-password-error');
+
+    if (usernameInput.value.trim() === '') {
+        showErrorMessage('register-username-error', 'Username is required.');
+        isValid = false;
+    }
+
+    if (emailInput.value.trim() === '') {
+        showErrorMessage('register-email-error', 'Email is required.');
+        isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
+        showErrorMessage('register-email-error', 'Invalid email format.');
+        isValid = false;
+    }
+
+    if (passwordInput.value.trim() === '') {
+        showErrorMessage('register-password-error', 'Password is required.');
+        isValid = false;
+    } else if (passwordInput.value.length < 6) {
+        showErrorMessage('register-password-error', 'Password must be at least 6 characters long.');
+        isValid = false;
+    }
+
+    if (confirmPasswordInput.value.trim() === '') {
+        showErrorMessage('register-confirm-password-error', 'Confirm password is required.');
+        isValid = false;
+    } else if (passwordInput.value !== confirmPasswordInput.value) {
+        showErrorMessage('register-confirm-password-error', 'Passwords do not match.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+        if (!validateLoginForm()) {
+            e.preventDefault();
+        }
+    });
+}
+
+if (registerForm) {
+    registerForm.addEventListener('submit', (e) => {
+        if (!validateRegisterForm()) {
+            e.preventDefault();
+        }
+    });
+}
+
 
 

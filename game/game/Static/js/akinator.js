@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 guessArea.style.display = 'none';
                 resetGameBtn.style.display = 'block';
                 await sendAnswer('guess_yes');
-                if (!gameState.isCelebrating) celebrateVictory(gameState.lastGuess);
+                
             } else if (answer === 'guess_no') {
                 akinatorQuestion.textContent = "Darn! Let me try another question.";
                 guessArea.style.display = 'none';

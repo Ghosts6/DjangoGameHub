@@ -69,6 +69,8 @@
                     <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         {{ login_form.as_p }}
+                        <div id="login-username-error" class="error-message" style="display: none;"></div>
+                        <div id="login-password-error" class="error-message" style="display: none;"></div>
                         <button type="submit">Login</button>
                     </form>
                     <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
@@ -78,6 +80,10 @@
                     <form method="post" action="{% url 'register' %}">
                         {% csrf_token %}
                         {{ register_form.as_p }}
+                        <div id="register-username-error" class="error-message" style="display: none;"></div>
+                        <div id="register-email-error" class="error-message" style="display: none;"></div>
+                        <div id="register-password-error" class="error-message" style="display: none;"></div>
+                        <div id="register-confirm-password-error" class="error-message" style="display: none;"></div>
                         <button type="submit">Register</button>
                     </form>
                     <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
