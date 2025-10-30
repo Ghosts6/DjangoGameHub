@@ -1,0 +1,403 @@
+body {
+    margin: 0;
+    animation: movingColor 10s infinite;
+    background: linear-gradient(45deg, #a3d7ff, #ffb6d1, #c7b3ff);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+@keyframes movingColor {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+.logo {
+    width: 60px;
+    height: auto;
+}
+
+.akinator-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    color: #192dad;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+#question-area p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    min-height: 60px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#answer-buttons button,
+#guess-area button,
+#start-game-btn,
+#reset-game-btn {
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px; 
+    padding: 15px 30px; 
+    font-size: 1.2em; 
+    font-weight: 600; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 8px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+}
+
+#answer-buttons button:hover,
+#guess-area button:hover,
+#start-game-btn:hover,
+#reset-game-btn:hover {
+    background: linear-gradient(145deg, #0056b3, #003f7f); 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+}
+
+#answer-buttons button:active,
+#guess-area button:active,
+#start-game-btn:active,
+#reset-game-btn:active {
+    transform: translateY(0); 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+    background: linear-gradient(145deg, #003f7f, #002a55); 
+}
+
+.answer-btn[data-answer="guess_yes"].correct-guess {
+    background: linear-gradient(145deg, #28a745, #1e7e34); 
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+.answer-btn[data-answer="guess_yes"].correct-guess:hover {
+    background: linear-gradient(145deg, #1e7e34, #155724);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.5);
+}
+
+.answer-btn[data-answer="guess_yes"].correct-guess:active {
+    background: linear-gradient(145deg, #155724, #0b3d1e);
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+#guess-area {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+#guess-area p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+#akinator-guess {
+    color: #192dad;
+    font-weight: bold;
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 20px rgba(40, 167, 69, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+.akinator-container.celebrate-guess {
+    animation: pulse-green 1s ease-out;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.victory-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9998;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.victory-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 60px 80px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+    animation: victoryPop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    max-width: 90%;
+}
+
+@keyframes victoryPop {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.victory-message h2 {
+    font-size: 3.5em;
+    margin: 0 0 20px 0;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    animation: textGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.victory-message p {
+    font-size: 1.8em;
+    margin: 20px 0;
+    animation: slideUpFade 0.8s ease 0.3s backwards;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.victory-character {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: characterBounce 1s ease 0.5s backwards;
+}
+
+@keyframes characterBounce {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #f0f;
+    position: absolute;
+    z-index: 9997;
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotateZ(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotateZ(720deg);
+        opacity: 0;
+    }
+}
+
+.firework {
+    position: fixed;
+    z-index: 9997;
+    pointer-events: none;
+}
+
+.firework::before,
+.firework::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    box-shadow: 
+        0 0 20px 4px currentColor,
+        0 0 40px 8px currentColor;
+}
+
+.firework::before {
+    animation: fireworkExplosion 1.5s ease-out forwards;
+}
+
+.firework::after {
+    animation: fireworkExplosion 1.5s 0.2s ease-out forwards;
+}
+
+@keyframes fireworkExplosion {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+    }
+}
+
+.star-burst {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+    z-index: 9996;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: starBurst 1s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes starBurst {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.sparkle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    z-index: 9997;
+    animation: sparkleFloat 2s ease-out forwards;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes sparkleFloat {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-100px) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-200px) scale(0);
+        opacity: 0;
+    }
+}
+
+body.victory-mode {
+    animation: victoryBackgroundPulse 2s ease-in-out infinite;
+}
+
+@keyframes victoryBackgroundPulse {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.3);
+    }
+}

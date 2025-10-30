@@ -14,15 +14,13 @@
     <title>Flappy Bird</title>
 </head>
 <body>
-    <a href="https://kiarashbashokian.com" target="_blank">
+    {% csrf_token %}
+    <div id="clock" class="clock">00:00:00</div>
+    <a href="/" target="_blank">
         <img src="{% static 'img/logo.png'%}" alt="Your Logo" class="logo">
     </a>
-    <div class="return-icon" id="returnIcon">
-        <img src="{% static 'img/return.svg'%}" alt="svg" class="returnicon" title="Return to home page">
-    </div>
-    <div id="clock" class="clock">00:00:00</div>
-    <div id="particles-js"></div>
     <h1>Flappy Bird </h1>
+    <div id="particles-js"></div>
     <div class="game">
         <div id="block"></div>
         <div id="hole"></div>

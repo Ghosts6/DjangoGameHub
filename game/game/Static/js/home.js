@@ -16,56 +16,42 @@ particlesJS("particles-js", {
   retina_detect: true,
 });
 
-function startGame(gameName) {
-    var playerName = document.getElementById('playerName').value;
+const showRegister = document.getElementById('show-register');
+const showLogin = document.getElementById('show-login');
+const loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+const authContainer = document.getElementById('auth-container');
+const showLoginRegister = document.getElementById('show-login-register');
+const gameSelectionContainer = document.getElementById('game-selection-container');
 
-    if (playerName.trim() !== "") {
-        document.getElementById('selectedGame').value = gameName;
-        document.getElementById('gameForm').submit();
-    } else {
-        alertMessage("Please enter your name", "red");
-    }
+if (showRegister) {
+    showRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+    });
 }
 
-function sendDataToBackend(playerName, gameName) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "{% url 'start_game' %}", true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+if (showLogin) {
+    showLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+    });
+}
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText);
+if (showLoginRegister) {
+    showLoginRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (authContainer.style.display === 'none') {
+            authContainer.style.display = 'block';
+            gameSelectionContainer.style.display = 'none';
+        } else {
+            authContainer.style.display = 'none';
+            gameSelectionContainer.style.display = 'block';
         }
-    };
-
-    var data = {
-        player_name: playerName,
-        game_name: gameName
-    };
-
-    xhr.send(JSON.stringify(data));
+    });
 }
 
 
-function checkAndRedirect(destination) {
-    var playerName = document.getElementById('playerName').value;
-
-    if (playerName.trim() !== "") {
-        window.location.href = destination;
-    } else {
-        alertMessage("Please enter your name", "red");
-    }
-}
-
-function alertMessage(message, color) {
-    var alertDiv = document.createElement("div");
-    alertDiv.className = "alert-message"; 
-    alertDiv.style.color = color;
-    alertDiv.innerHTML = message;
-
-    document.getElementById("gameForm").appendChild(alertDiv);
-    setTimeout(function () {
-        document.getElementById("gameForm").removeChild(alertDiv);
-    }, 3000);
-}
 

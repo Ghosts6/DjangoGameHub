@@ -4,6 +4,7 @@ body {
     background: linear-gradient(45deg, #a3d7ff, #ffb6d1, #c7b3ff);
     background-size: 100% 100%;
     background-attachment: fixed;
+    overflow: hidden;
 }
 
 @keyframes movingColor {
@@ -45,8 +46,7 @@ body {
 }
 
 .clock,
-.logo,
-.return-icon {
+.logo {
     position: absolute;
     top: 20px;
 }
@@ -64,35 +64,15 @@ body {
     height: auto;
 }
 
-.return-icon img {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    cursor: pointer;
-    width: 40px;
-    height: auto;
-}
-
-.tooltip {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #000;
-    color: #fff;
-    padding: 5px;
-    border-radius: 3px;
-    font-size: 14px;
-    display: none;
-}
-
 h1 {
     color: black;
-    font-size: 2em;
-    left: 45%;
-    top: 7%;
+    font-size: 3em; 
     position: absolute;
+    top: 0; 
+    left: 50%;
+    transform: translateX(-50%); 
     z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 #score {
@@ -106,14 +86,13 @@ h1 {
 }
 
 .game {
-    position: absolute;
+    position: relative; 
     overflow: hidden;
     height: 700px;
     width: 800px;
     border: 4px dotted #36e6ec;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    margin-top: 100px; 
     background: rgba(255, 255, 255, 0.5);
     background-image: url("/static/img/flappy_bird/background.png"),url("/static/img/flappy_bird/cloud.png");
     background-size: 200% 100%,auto;
@@ -175,32 +154,74 @@ h1 {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
     border: 3px double #00bfff;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    animation: popupAppear 0.5s ease forwards;
+    backdrop-filter: blur(10px);
     z-index: 10;
 }
 
+@keyframes popupAppear {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.game-over-popup h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.game-over-popup p {
+    color: #34495e;
+    font-size: 20px;
+    margin: 15px 0;
+}
+
 .buttons-container {
-    margin-top: 20px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .buttons-container button {
-    background-color: #00bfff; 
-    color: #000; 
-    border-radius: 20px; 
-    padding: 10px 20px; 
-    margin: 5px; 
+    background-color: #00bfff;
+    color: #000;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
 }
 
 .buttons-container button:hover {
-    background-color: #007acc; 
-    color: #fff; 
-    border: 3px double #007acc;
+    background-color: #007acc;
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 122, 204, 0.4);
+}
+
+.buttons-container button:active {
+    transform: scale(0.95);
 }

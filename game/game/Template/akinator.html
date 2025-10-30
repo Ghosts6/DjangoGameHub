@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <link rel="stylesheet" href="{% static 'css/akinator.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="theme-color" content="#ffffff">
+    <title>Akinator</title>
+</head>
+<body>
+    <div id="particles-js"></div>
+    {% csrf_token %}
+    <a href="/" class="home-link">
+        <img src="{% static 'img/logo.png' %}" alt="Your Logo" class="logo">
+    </a>
+    <div class="akinator-container">
+        <h1>Akinator Game</h1>
+        <div id="question-area">
+            <p id="akinator-question">Think of a character, and I will try to guess it!</p>
+        </div>
+        <div id="answer-buttons">
+            <button class="answer-btn" data-answer="yes">Yes</button>
+            <button class="answer-btn" data-answer="no">No</button>
+            <button class="answer-btn" data-answer="dont_know">Don't Know</button>
+            <button class="answer-btn" data-answer="probably">Probably</button>
+            <button class="answer-btn" data-answer="probably_not">Probably Not</button>
+        </div>
+        <div id="guess-area" style="display: none;">
+            <p>I guess your character is: <span id="akinator-guess"></span></p>
+            <button class="answer-btn" data-answer="guess_yes">Yes, that's it!</button>
+            <button class="answer-btn" data-answer="guess_no">No, try again.</button>
+        </div>
+        <div class="game-controls">
+            <button id="start-game-btn">Start Game</button>
+            <button id="reset-game-btn" style="display: none;">Reset Game</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{% static 'js/akinator.js' %}"></script>
+</body>
+</html>

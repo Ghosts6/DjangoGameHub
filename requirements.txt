@@ -1,5 +1,13 @@
-python-ldap
+# framework
 django
-whitenoise
-packaging
+
+# django extensions
 django-auth-ldap
+whitenoise
+gunicorn
+
+# other packages
+python-ldap
+packaging
+python-dotenv
+openai

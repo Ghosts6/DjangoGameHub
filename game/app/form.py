@@ -1,25 +1,29 @@
 from django import forms
-from .models import PlayerGame
-from .models import SnakeScore
-from .models import FlappyScore
-from .models import DinosaurScore
+from django.contrib.auth.models import User
+from .models import GameScore
 
-class PlayerGameForm(forms.ModelForm):
-    class Meta:
-        model = PlayerGame
-        fields = ['player_name', 'game_name', 'score']
-       
-class SnakeScoreForm(forms.ModelForm):
-    class Meta:
-        model = SnakeScore
-        fields = []
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    password_confirm = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
 
-class FlappyScoreForm(forms.ModelForm):
     class Meta:
-        model = FlappyScore
-        fields = []
-        
-class DinosaurScoreForm(forms.ModelForm):
+        model = User
+        fields = ['username', 'password']
+        help_texts = {
+            'username': ''
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password_confirm = cleaned_data.get("password_confirm")
+
+        if password and password_confirm and password != password_confirm:
+            self.add_error('password_confirm', "Passwords do not match")
+
+        return cleaned_data
+
+class GameScoreForm(forms.ModelForm):
     class Meta:
-        model = DinosaurScore
-        fields = []
+        model = GameScore
+        fields = ['game', 'score']

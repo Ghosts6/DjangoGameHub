@@ -58,46 +58,154 @@ body {
     z-index: 2; 
 }
 .fruit {
-    font-size: 24px; 
-    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
     z-index: 3;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    animation: fruitPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes fruitPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 .banana {
-    color: yellow; 
+    color: yellow;
+}
+
+.start-message, .pause-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 24px;
+    text-align: center;
+    z-index: 1000;
+    animation: messageFloat 1.5s infinite ease-in-out;
+}
+
+@keyframes messageFloat {
+    0% { transform: translate(-50%, -50%); }
+    50% { transform: translate(-50%, -55%); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+.snake-segment {
+    transition: all 0.1s linear;
+    font-size: 20px;
+    line-height: 1;
+    z-index: 4;
+}
+
+.snake-segment:first-child {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+    animation: headPulse 2s infinite ease-in-out;
+}
+
+@keyframes headPulse {
+    0% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7)); }
+    50% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9)); }
+    100% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7)); }
 }
 
 .game-over-popup {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
     border: 3px double #00bfff;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    animation: popupAppear 0.5s ease forwards;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+@keyframes popupAppear {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.game-over-popup h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.game-over-popup p {
+    color: #34495e;
+    font-size: 20px;
+    margin: 15px 0;
 }
 
 .buttons-container {
-    margin-top: 20px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .buttons-container button {
-    background-color: #00bfff; 
-    color: #000; 
-    border-radius: 20px; 
-    padding: 10px 20px; 
-    margin: 5px; 
+    background-color: #00bfff;
+    color: #000;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
 }
 
 .buttons-container button:hover {
-    background-color: #007acc; 
-    color: #fff; 
-    border: 3px double #007acc;
+    background-color: #007acc;
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 122, 204, 0.4);
+}
+
+.buttons-container button:active {
+    transform: scale(0.95);
+}
+
+/* Add a game over effect */
+.game-container.game-over {
+    filter: brightness(0.8);
+    transition: filter 0.3s ease;
+}
+
+/* Add score display enhancement in popup */
+.final-score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 20px 0;
+    padding: 10px;
+    background: rgba(0, 191, 255, 0.1);
+    border-radius: 10px;
+    display: inline-block;
 }
 

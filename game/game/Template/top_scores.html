@@ -15,47 +15,86 @@
 
 </head>
 <body>
-    <a href="https://kiarashbashokian.com" target="_blank">
-        <img src="{% static 'img/logo.png' %}" alt="Your Logo" class="logo">
-    </a>
-    <div class="return-icon" id="returnIcon">
-        <img src="{% static 'img/return.svg' %}" alt="svg" class="returnicon" title="Return to home page">
-    </div>
-    <div class="container">
-    <h1>Top Scores:</h1>
-    <div class="scoreboard" id="scoreboard1">
-    <h2>Snake game</h2>
-    {% for score in snake_top_scores %}
-        <p>{{ score.player_name }} - Score: {{ score.score }}</p>
-    {% endfor %}
-    <div class="logo-container">
-        <img src="{% static 'img/top_score/snakelogo.png' %}" alt="Snake Logo">
-    </div>
-</div>
-
-<div class="scoreboard" id="scoreboard2">
-    <h2>Flappy bird</h2>
-    {% for score in flappy_top_scores %}
-        <p>{{ score.player_name }} - Score: {{ score.score }}</p>
-    {% endfor %}
-    <div class="logo-container">
-        <img src="{% static 'img/top_score/flappylogo.png' %}" alt="Flappy Bird Logo">
-    </div>
-</div>
-
-<div class="scoreboard" id="scoreboard3">
-    <h2>Dinosaur game</h2>
-    {% for score in dinosaur_top_scores %}
-        <p>{{ score.player_name }} - Score: {{ score.score }}</p>
-    {% endfor %}
-    <div class="logo-container">
-        <img src="{% static 'img/top_score/dinologo.png' %}" alt="Dinosaur Game Logo">
-    </div>
-</div>
-
-
-    <div id="clock" class="clock">00:00:00</div>
     <div id="particles-js"></div>
+    <div class="header-section">
+        <a href="/">
+            <img src="{% static 'img/logo.png' %}" alt="Your Logo" class="logo">
+        </a>
+        <h1 class="page-title">Top Scores</h1>
+        <div id="clock" class="clock">00:00:00</div>
+    </div>
+
+    <div class="scoreboards-grid">
+        <div class="scoreboard" id="scoreboard1">
+            <h2>Snake game</h2>
+            <ul>
+            {% for score in snake_top_scores %}
+                <li>
+                    {% if score.user %}
+                        {{ score.user.username }}
+                    {% elif score.guest %}
+                        {{ score.guest.guest_name }}
+                    {% else %}
+                        Anonymous
+                    {% endif %}
+                    - Score: <span>{{ score.score }}</span>
+                </li>
+            {% empty %}
+                <li>No top score yet.</li>
+            {% endfor %}
+            </ul>
+            <div class="logo-container">
+                <img src="{% static 'img/top_score/snakelogo.png' %}" alt="Snake Logo">
+            </div>
+        </div>
+
+        <div class="scoreboard" id="scoreboard2">
+            <h2>Flappy bird</h2>
+            <ul>
+            {% for score in flappy_top_scores %}
+                <li>
+                    {% if score.user %}
+                        {{ score.user.username }}
+                    {% elif score.guest %}
+                        {{ score.guest.guest_name }}
+                    {% else %}
+                        Anonymous
+                    {% endif %}
+                    - Score: <span>{{ score.score }}</span>
+                </li>
+            {% empty %}
+                <li>No top score yet.</li>
+            {% endfor %}
+            </ul>
+            <div class="logo-container">
+                <img src="{% static 'img/top_score/flappylogo.png' %}" alt="Flappy Bird Logo">
+            </div>
+        </div>
+
+        <div class="scoreboard" id="scoreboard3">
+            <h2>Dinosaur game</h2>
+            <ul>
+            {% for score in dinosaur_top_scores %}
+                <li>
+                    {% if score.user %}
+                        {{ score.user.username }}
+                    {% elif score.guest %}
+                        {{ score.guest.guest_name }}
+                    {% else %}
+                        Anonymous
+                    {% endif %}
+                    - Score: <span>{{ score.score }}</span>
+                </li>
+            {% empty %}
+                <li>No top score yet.</li>
+            {% endfor %}
+            </ul>
+            <div class="logo-container">
+                <img src="{% static 'img/top_score/dinologo.png' %}" alt="Dinosaur Game Logo">
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="{% static 'js/top_scores.js' %}"></script>
 </body>

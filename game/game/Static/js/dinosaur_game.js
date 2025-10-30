@@ -16,46 +16,26 @@ particlesJS("particles-js", {
   retina_detect: true,
 });
 
-function updateClock() {
-    var now = new Date();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
+let timer;
+let seconds = 0;
 
-    hours = (hours < 10 ? "0" : "") + hours;
-    minutes = (minutes < 10 ? "0" : "") + minutes;
-    seconds = (seconds < 10 ? "0" : "") + seconds;
-    
-    var timeString = hours + ":" + minutes + ":" + seconds;
-    
-    document.getElementById("clock").innerHTML = timeString;
+function updateStopwatch() {
+    seconds++;
+    const hours = Math.floor(seconds / 3600).toString().padStart(2, '0');
+    const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+    const secs = (seconds % 60).toString().padStart(2, '0');
+    document.getElementById('clock').innerText = `${hours}:${minutes}:${secs}`;
 }
 
-setInterval(updateClock, 1000);
+function startStopwatch() {
+    seconds = 0;
+    document.getElementById('clock').innerText = '00:00:00';
+    timer = setInterval(updateStopwatch, 1000);
+}
 
-document.getElementById('returnIcon').addEventListener('click', function() {
-    window.location.href = 'home/';
-});
-
-var returnIcon = document.getElementById('returnIcon');
-returnIcon.addEventListener('mouseover', function() {
-    var tooltip = document.createElement('div');
-    tooltip.className = 'tooltip';
-    tooltip.innerHTML = 'Return to home page';
-    
-    returnIcon.appendChild(tooltip);
-});
-
-returnIcon.addEventListener('mouseout', function() {
-    var tooltip = returnIcon.querySelector('.tooltip');
-    if (tooltip) {
-        returnIcon.removeChild(tooltip);
-    }
-});
-
-returnIcon.addEventListener('click', function() {
-    window.location.href = 'home/';
-});
+function stopStopwatch() {
+    clearInterval(timer);
+}
 
 //game logic
 var isGameRunning = true;
@@ -119,6 +99,7 @@ function endGame() {
         return;
     }
 
+    stopStopwatch();
     isGameRunning = false;
     isGameOver = true;
     saveDinosaurScore("PlayerName", score);
@@ -189,6 +170,7 @@ function restartGame() {
     if (isGameRunning) {
         gameLoop();
     }
+    startStopwatch();
 }
 
 function gameLoop() {
@@ -206,15 +188,18 @@ function removeGameOverPopup() {
 }
 
 gameLoop();
+startStopwatch();
 
 function saveDinosaurScore(playerName, score) {
-    fetch('/save_dinosaur_score/', {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    fetch('/save_score/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
         },
         body: JSON.stringify({
-            player_name: playerName,
+            game: 'dinosaur',
             score: score,
         }),
     })

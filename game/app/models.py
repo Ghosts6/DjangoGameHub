@@ -1,31 +1,23 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class PlayerGame(models.Model):
-    player_name = models.CharField(max_length=255)
-    game_name = models.CharField(max_length=255)
+class Guest(models.Model):
+    guest_name = models.CharField(max_length=100)
+    session_key = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.guest_name
+
+class GameScore(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    guest = models.ForeignKey(Guest, on_delete=models.CASCADE, null=True, blank=True)
+    game = models.CharField(max_length=100)
     score = models.IntegerField()
 
     def __str__(self):
-        return f"{self.player_name} - {self.game_name} - Score: {self.score}"
-    
-class SnakeScore(models.Model):
-    player_name = models.CharField(max_length=255)
-    score = models.IntegerField()
-    
-    def __str__(self):
-        return f"{self.player_name} - Score: {self.score}"
-
-class FlappyScore(models.Model):
-    player_name = models.CharField(max_length=255)
-    score = models.IntegerField()
-    
-    def __str__(self):
-        return f"{self.player_name} - Score: {self.score}"
-    
-class DinosaurScore(models.Model):
-    player_name = models.CharField(max_length=255)
-    score = models.IntegerField()
-   
-    def __str__(self):
-        return f"{self.player_name} - Score: {self.score}"
+        if self.user:
+            return f'{self.user.username} - {self.game} - {self.score}'
+        elif self.guest:
+            return f'{self.guest.guest_name} - {self.game} - {self.score}'
+        return f'Anonymous - {self.game} - {self.score}'
     

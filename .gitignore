@@ -1,0 +1,26 @@
+# Django stuff:
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+migrations/
+
+# Environments
+.env
+venv
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Sass
+.sass-cache/
+.DS_Store
+
+# db
+*.sqlite3
+db.*

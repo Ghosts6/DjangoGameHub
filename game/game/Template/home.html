@@ -2,36 +2,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Hub</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png'%}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png'%}">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">  
-    <meta name="msapplication-TileColor" content="#603cba">
-    <meta name="theme-color" content="#ffffff">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-    <title>Home</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to my project</h1>
-        <p>Developer: <span id="name">Kiarash B</span></p>
-    </div>
     <div id="particles-js"></div>
-<form id="gameForm" class="transparent-form" action="{% url 'home' %}" method="post" onsubmit="return false;">
-    {% csrf_token %}
-    <input type="text" id="playerName" name="player_name" placeholder="Enter your name" required />
-    <input type="hidden" id="selectedGame" name="selected_game" />
-    <button type="button" onclick="startGame('snake')">Snake Game</button>
-    <button type="button" onclick="startGame('tic_tac')">Tic Tac Toe</button>
-    <button type="button" onclick="startGame('flappy_bird')">Flappy Bird</button>
-    <button type="button" onclick="startGame('dinosaur')">Dinosaur Game</button>
-    <br> 
-    <a href="{% url 'top_scores' %}" class="top-scores-link">Top Scores</a>
-</form>
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo-text">Game Hub</h1>
+            <span class="separator">|</span>
+            <p class="developer-info">Developer: Kiarash B</p>
+        </div>
+        <div class="header-right">
+            {% if user.is_authenticated %}
+                <div class="user-dropdown">
+                    <button class="username-display">Welcome, {{ user.username }}!</button>
+                    <div class="user-dropdown-menu">
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            {% elif request.session.guest_id %}
+                <div class="user-dropdown">
+                    <button class="username-display">Welcome, Guest!</button>
+                    <div class="user-dropdown-menu">
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="#" id="show-login-register" class="link-button">Login / Register</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="main-content">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="game-selection-container" id="game-selection-container">
+            <h2>Select a Game</h2>
+            <form class="game-form" method="post">
+                {% csrf_token %}
+                <button type="submit" name="selected_game" value="snake">Snake</button>
+                <button type="submit" name="selected_game" value="tic_tac">Tic Tac Toe</button>
+                <button type="submit" name="selected_game" value="flappy_bird">Flappy Bird</button>
+                <button type="submit" name="selected_game" value="dinosaur">Dinosaur</button>
+                <button type="submit" name="selected_game" value="akinator">Akinator</button>
+            </form>
+            <div class="links-container">
+                <a href="{% url 'top_scores' %}" class="link-button">Top Scores</a>
+            </div>
+        </div>
+
+        <div class="auth-container" id="auth-container" style="display: none;">
+            <div class="auth-form-container">
+                <div id="login-form" class="auth-form">
+                    <h2>Login</h2>
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        {{ login_form.as_p }}
+                        <button type="submit">Login</button>
+                    </form>
+                    <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
+                </div>
+                <div id="register-form" class="auth-form" style="display: none;">
+                    <h2>Register</h2>
+                    <form method="post" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        {{ register_form.as_p }}
+                        <button type="submit">Register</button>
+                    </form>
+                    <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
+                </div>
+            </div>
+            <a href="/?guest=true" class="link-button">Play as Guest</a>
+        </div>
+    </main>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="{% static 'js/home.js' %}"></script>
 </body>
-
 </html>

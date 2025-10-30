@@ -4,7 +4,9 @@ body {
     background: linear-gradient(45deg, #a3d7ff, #ffb6d1, #c7b3ff);
     background-size: 100% 100%;
     background-attachment: fixed;
+    overflow: hidden;
 }
+
 
 @keyframes movingColor {
     0% {
@@ -28,11 +30,20 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
     padding: 50px;
-    background-color: rgba(163, 215, 255, 0.5);
+    background-color: rgba(163, 215, 255, 0.7);
     border-radius: 20px;
     border: 4px double #c7b3ff;
     width: 500px;
     height: 500px;
+    box-shadow: 0 0 30px rgba(199, 179, 255, 0.5);
+    backdrop-filter: blur(5px);
+    animation: containerPulse 2s infinite ease-in-out;
+}
+
+@keyframes containerPulse {
+    0% { box-shadow: 0 0 30px rgba(199, 179, 255, 0.5); }
+    50% { box-shadow: 0 0 50px rgba(199, 179, 255, 0.7); }
+    100% { box-shadow: 0 0 30px rgba(199, 179, 255, 0.5); }
 }
 
 #particles-js {
@@ -54,8 +65,7 @@ body {
 }
 
 .clock,
-.logo,
-.return-icon {
+.logo {
     position: absolute;
     top: 20px;
 }
@@ -71,32 +81,6 @@ body {
     left: 20px;
     width: 60px;
     height: auto;
-}
-
-.return-icon img {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    cursor: pointer;
-    width: 40px;
-    height: auto;
-}
-
-.tooltip {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #000;
-    color: #fff;
-    padding: 5px;
-    border-radius: 3px;
-    font-size: 14px;
-    display: none;
-}
-
-.return-icon:hover .tooltip {
-    display: block;
 }
 
 .game-board {
@@ -141,7 +125,7 @@ body {
 .cell {
     flex: 1;
     aspect-ratio: 1/1;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid #c7b3ff;
     border-radius: 10px;
     cursor: pointer;
@@ -151,6 +135,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(199, 179, 255, 0.3);
+}
+
+.cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(199, 179, 255, 0.5);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.cell:active {
+    transform: scale(0.95);
 }
 
 .cell svg {
@@ -168,33 +165,62 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
     border: 3px double #00bfff;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    animation: popupAppear 0.5s ease forwards;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes popupAppear {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
 
 .buttons-container {
-    margin-top: 20px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .buttons-container button {
     background-color: #00bfff;
     color: #000;
-    border-radius: 20px;
-    padding: 10px 20px;
-    margin: 5px;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
 }
 
 .buttons-container button:hover {
     background-color: #007acc;
     color: #fff;
-    border: 3px double #007acc;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 122, 204, 0.4);
+}
+
+.buttons-container button:active {
+    transform: scale(0.95);
 }
 
 .winning-cell {

@@ -17,42 +17,13 @@ particlesJS("particles-js", {
 });
 
 function updateClock() {
-    var now = new Date();
-    var hours = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
-
-    hours = (hours < 10 ? "0" : "") + hours;
-    minutes = (minutes < 10 ? "0" : "") + minutes;
-    seconds = (seconds < 10 ? "0" : "") + seconds;
-    
-    var timeString = hours + ":" + minutes + ":" + seconds;
-    
+    const now = new Date();
+    const torontoTime = new Date(now.toLocaleString("en-US", { timeZone: "America/Toronto" }));
+    const hours = torontoTime.getHours().toString().padStart(2, '0');
+    const minutes = torontoTime.getMinutes().toString().padStart(2, '0');
+    const seconds = torontoTime.getSeconds().toString().padStart(2, '0');
+    const timeString = `${hours}:${minutes}:${seconds}`;
     document.getElementById("clock").innerHTML = timeString;
 }
 
 setInterval(updateClock, 1000);
-
-document.getElementById('returnIcon').addEventListener('click', function() {
-    window.location.href = 'home/';
-});
-
-var returnIcon = document.getElementById('returnIcon');
-returnIcon.addEventListener('mouseover', function() {
-    var tooltip = document.createElement('div');
-    tooltip.className = 'tooltip';
-    tooltip.innerHTML = 'Return to home page';
-    
-    returnIcon.appendChild(tooltip);
-});
-
-returnIcon.addEventListener('mouseout', function() {
-    var tooltip = returnIcon.querySelector('.tooltip');
-    if (tooltip) {
-        returnIcon.removeChild(tooltip);
-    }
-});
-
-returnIcon.addEventListener('click', function() {
-    window.location.href = 'home/';
-});

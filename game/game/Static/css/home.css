@@ -1,35 +1,12 @@
 body {
     margin: 0;
-    animation: movingColor 10s infinite;
-    background: linear-gradient(45deg, #a3d7ff, #ffb6d1, #c7b3ff);
-    background-size: 100% 100%;
-    background-attachment: fixed;
-}
-
-@keyframes movingColor {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.container {
-    text-align: center;
-    padding: 50px;
-    background-color: transparent;
-    margin-top: 130px; 
-}
-
-h1,
-p {
-    color: #333; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 #particles-js {
@@ -39,66 +16,274 @@ p {
     top: 0;
     left: 0;
     z-index: -1;
+    background: linear-gradient(45deg, #a3d7ff, #ffb6d1, #c7b3ff);
 }
 
-.transparent-form {
-    position: absolute;
-    top: 44%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.5);
-    border: 3px groove #66d978; 
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 80px;
 }
 
-.transparent-form input {
-    width: 80%; 
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.header-left {
+    display: flex;
+    align-items: center;
 }
 
-.transparent-form button {
-    background-color: #8eff9a; 
-    color: #000; 
-    padding: 10px 20px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.separator {
+    font-size: 24px;
+    color: #ccc;
+    margin-right: 10px;
+}
+
+.developer-info p {
+    margin: 0;
     font-size: 16px;
 }
 
-.transparent-form button:hover {
-    background-color: #66d978;
+.header-right .user-info {
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.transparent-form div.alert-message {
-    position: absolute;
-    bottom: -40px; 
-    left: 50%;
-    transform: translateX(-50%);
-    color: red; 
+.user-dropdown {
+    position: relative;
+    display: inline-block;
 }
-.top-scores-link {
-    display: block;
-    margin-top: 10px;
-    margin: 10px auto;  
-    padding: 10px;
-    background-color: #0077cc; 
-    color: #000;
-    text-align: center;
+
+.username-display {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 12px 18px;
+    color: #007bff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.username-display:hover {
+    color: #0056b3;
+    background-color: rgba(0, 123, 255, 0.08);
+    transform: translateY(-1px);
+}
+
+.username-display::after {
+    content: "▾";
+    font-size: 14px;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.user-dropdown:hover .username-display::after {
+    transform: rotate(180deg);
+}
+
+.user-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+}
+
+.user-dropdown-menu {
+    visibility: hidden;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 180px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 8px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-dropdown:hover .user-dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.user-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
     text-decoration: none;
-    width: 200px;
-    border-radius: 5px;
-    font-weight: bold;
+    color: #333;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin: 2px 0;
+}
+
+.user-dropdown-menu a:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateX(4px);
+}
+
+
+.user-dropdown-menu a[href*="logout"]::before {
+    content: '↪';
+    margin-right: 8px;
+    font-size: 18px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.user-dropdown-menu a[href*="logout"]:hover::before {
+    transform: rotate(180deg);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.messages {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.game-selection-container, .auth-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.game-selection-container h2, .auth-form h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
+.game-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.game-form button, .link-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.game-form button:last-child  {
+    grid-column: 1 / -1; 
+}
+
+.game-form button:hover, .link-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.links-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.auth-form-container {
+    margin-bottom: 20px;
+}
+
+.auth-form input[type="text"], .auth-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.top-scores-link:hover {
-    background-color: #005580;  
+.auth-form button:hover {
+    background-color: #218838;
+}
+
+.auth-form p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.auth-form a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
 }

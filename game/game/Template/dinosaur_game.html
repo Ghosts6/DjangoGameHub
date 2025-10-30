@@ -14,13 +14,11 @@
     <title>Dinosaur-Game</title>
 </head>
 <body>
-    <a href="https://kiarashbashokian.com" target="_blank">
+    {% csrf_token %}
+    <div id="clock" class="clock">00:00:00</div>
+    <a href="/" target="_blank">
         <img src="{% static 'img/logo.png'%}" alt="Your Logo" class="logo">
     </a>
-    <div class="return-icon" id="returnIcon">
-        <img src="{% static 'img/return.svg'%}" alt="svg" class="returnicon" title="Return to home page">
-    </div>
-    <div id="clock" class="clock">00:00:00</div>
     <div id="particles-js"></div>
     <h1>T-Rex Chrome Dino Game</h1>
     <div class="game"> 

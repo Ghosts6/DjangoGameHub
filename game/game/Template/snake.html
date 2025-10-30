@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="{% static 'css/snake.css' %}">
 </head>
 <body>
+    {% csrf_token %}
+    <div id="particles-js"></div>
     <div class="game-container">
         <div class="score-container">
             <p class="player-score">
-                <span id="playerName">Your Name</span>
+                <span id="playerName">{{ user.username|default:"Guest" }}</span>
                 <span id="score">0</span>
             </p>
         </div>
@@ -31,17 +33,25 @@
     </div>
     <div class="top-score-container">
         <p>Top Score:</p>
-        <form id="snakeScoreForm" method="post" action="{% url 'submit_snake_score' %}">
-        {% csrf_token %}
-    <ul>
-        {% for score in top_scores %}
-            <li>{{ score.player_name }} - {{ score.score }}</li>
-        {% empty %}
-            <li>No top score yet.</li>
-        {% endfor %}
-    </ul>
-</div>
+        <ul>
+            {% if top_score %}
+                <li>
+                    {% if top_score.user %}
+                        {{ top_score.user.username }}
+                    {% elif top_score.guest %}
+                        {{ top_score.guest.guest_name }}
+                    {% else %}
+                        Anonymous
+                    {% endif %}
+                    - {{ top_score.score }}
+                </li>
+            {% else %}
+                <li>No top score yet.</li>
+            {% endif %}
+        </ul>
     </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="{%static 'js/snake.js' %}"></script>
 </body>
 </html>
