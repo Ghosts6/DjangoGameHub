@@ -164,3 +164,30 @@ body {
         margin: 20px auto;
     }
 }
+
+@media (max-width: 480px) {
+    body {
+        overflow: auto;
+    }
+
+    .header-section {
+        padding: 10px 15px;
+    }
+
+    .page-title {
+        font-size: 2em;
+    }
+
+    .clock {
+        font-size: 1.2em;
+    }
+
+    .scoreboard h2 {
+        font-size: 1.8em;
+    }
+
+    .scoreboard li {
+        font-size: 1em;
+        padding: 10px;
+    }
+}

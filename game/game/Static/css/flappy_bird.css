@@ -225,3 +225,75 @@ h1 {
 .buttons-container button:active {
     transform: scale(0.95);
 }
+
+@media (max-width: 768px) {
+    .game {
+        width: 95%;
+        height: 600px;
+        margin-top: 80px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    #character {
+        height: 80px;
+        width: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow: auto;
+    }
+
+    .game {
+        height: 500px;
+        margin-top: 60px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    #character {
+        height: 60px;
+        width: 45px;
+    }
+
+    .clock, .logo {
+        top: 10px;
+    }
+
+    .clock {
+        font-size: 24px;
+        right: 10px;
+    }
+
+    .logo {
+        width: 40px;
+        left: 10px;
+    }
+
+    #score {
+        font-size: 20px;
+    }
+
+    .game-over-popup {
+        width: 80%;
+    }
+
+    .game-over-popup h2 {
+        font-size: 22px;
+    }
+
+    .game-over-popup p {
+        font-size: 16px;
+    }
+
+    .buttons-container button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

@@ -209,3 +209,61 @@ body {
     display: inline-block;
 }
 
+@media (max-width: 768px) {
+    .score-container, .top-score-container {
+        font-size: 18px;
+    }
+
+    .fruit {
+        font-size: 20px;
+    }
+
+    .start-message, .pause-message {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        border-width: 5px;
+        padding: 10px;
+    }
+
+    .score-container {
+        top: 10px;
+    }
+
+    .top-score-container {
+        bottom: 10px;
+    }
+
+    .player-score, .top-score-container ul {
+        font-size: 14px;
+    }
+
+    .fruit {
+        font-size: 18px;
+    }
+
+    .start-message, .pause-message {
+        font-size: 18px;
+        padding: 15px 20px;
+    }
+
+    .game-over-popup {
+        width: 80%;
+    }
+
+    .game-over-popup h2 {
+        font-size: 22px;
+    }
+
+    .game-over-popup p {
+        font-size: 16px;
+    }
+
+    .buttons-container button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

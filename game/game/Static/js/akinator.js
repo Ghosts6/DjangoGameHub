@@ -16,6 +16,27 @@ particlesJS("particles-js", {
   retina_detect: true,
 });
 
+let timer;
+let seconds = 0;
+
+function updateStopwatch() {
+    seconds++;
+    const hours = Math.floor(seconds / 3600).toString().padStart(2, '0');
+    const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+    const secs = (seconds % 60).toString().padStart(2, '0');
+    document.getElementById('clock').innerText = `${hours}:${minutes}:${secs}`;
+}
+
+function startStopwatch() {
+    seconds = 0;
+    document.getElementById('clock').innerText = '00:00:00';
+    timer = setInterval(updateStopwatch, 1000);
+}
+
+function stopStopwatch() {
+    clearInterval(timer);
+}
+
 let gameState = {
     lastGuess: null,
     gameStarted: false,
@@ -214,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     startGameBtn.addEventListener('click', () => {
+        startStopwatch();
         gameState = {
             lastGuess: null,
             gameStarted: true,
@@ -240,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('button').forEach(btn => btn.disabled = true);
         try {
             if (answer === 'guess_yes') {
+                stopStopwatch();
                 targetButton.classList.add('correct-guess');
                 akinatorQuestion.textContent = `I knew it! I guessed "${gameState.lastGuess}" correctly! 🎉`;
                 guessArea.style.display = 'none';
@@ -247,6 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 await sendAnswer('guess_yes');
                 
             } else if (answer === 'guess_no') {
+                stopStopwatch();
                 akinatorQuestion.textContent = "Darn! Let me try another question.";
                 guessArea.style.display = 'none';
                 answerButtons.style.display = 'block';
@@ -260,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     resetGameBtn.addEventListener('click', () => {
+        stopStopwatch();
         gameState = {
             lastGuess: null,
             gameStarted: false,

@@ -239,3 +239,73 @@ body {
 .winning-cell svg {
     fill: #000;
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 80vw;
+        height: 80vw;
+        padding: 30px;
+    }
+
+    .title-container h1 {
+        font-size: 2.5em;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 10%;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow: auto;
+    }
+
+    .container {
+        width: 90vw;
+        height: 90vw;
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .title-container h1 {
+        font-size: 2em;
+        top: 5%;
+    }
+
+    .clock, .logo {
+        top: 10px;
+    }
+
+    .clock {
+        font-size: 24px;
+        right: 10px;
+    }
+
+    .logo {
+        width: 40px;
+        left: 10px;
+    }
+
+    .cell {
+        border-width: 1px;
+    }
+
+    .game-over-popup {
+        width: 80%;
+    }
+
+    .game-over-popup h2 {
+        font-size: 22px;
+    }
+
+    .game-over-popup p {
+        font-size: 16px;
+    }
+
+    .buttons-container button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
