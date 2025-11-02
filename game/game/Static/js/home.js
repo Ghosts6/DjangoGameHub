@@ -72,8 +72,8 @@ function clearErrorMessage(elementId) {
 }
 
 function validateLoginForm() {
-    const usernameInput = document.getElementById('id_username'); 
-    const passwordInput = document.getElementById('id_password');
+    const usernameInput = loginForm.querySelector('#id_username');
+    const passwordInput = loginForm.querySelector('#id_password');
     let isValid = true;
 
     clearErrorMessage('login-username-error');
@@ -93,27 +93,17 @@ function validateLoginForm() {
 }
 
 function validateRegisterForm() {
-    const usernameInput = document.getElementById('id_username'); 
-    const emailInput = document.getElementById('id_email');      
-    const passwordInput = document.getElementById('id_password1'); 
-    const confirmPasswordInput = document.getElementById('id_password2'); 
+    const usernameInput = registerForm.querySelector('[name=username]');
+    const passwordInput = registerForm.querySelector('[name=password]');
+    const confirmPasswordInput = registerForm.querySelector('[name=password_confirm]');
     let isValid = true;
 
     clearErrorMessage('register-username-error');
-    clearErrorMessage('register-email-error');
     clearErrorMessage('register-password-error');
     clearErrorMessage('register-confirm-password-error');
 
     if (usernameInput.value.trim() === '') {
         showErrorMessage('register-username-error', 'Username is required.');
-        isValid = false;
-    }
-
-    if (emailInput.value.trim() === '') {
-        showErrorMessage('register-email-error', 'Email is required.');
-        isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
-        showErrorMessage('register-email-error', 'Invalid email format.');
         isValid = false;
     }
 
