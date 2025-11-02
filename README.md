@@ -57,3 +57,8 @@ Frontend: HTML, CSS, JavaScript, Particles.js
     python game/manage.py runserver
     ```
     The application will be available at `http://127.0.0.1:8000/`.
+
+## 🎬 Demo:
+
+[Demo.webm](https://github.com/user-attachments/assets/01c084d7-cb3e-46f3-a35e-2e648e665d18)
+
